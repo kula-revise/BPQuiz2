@@ -142,7 +142,9 @@
 </style>
 </head>
 <body>
-<style>#kula-mode-toggle{position:fixed;bottom:1.1rem;right:1.1rem;z-index:9999;display:inline-flex;align-items:center;gap:.45em;padding:.48rem .82rem;border-radius:999px;font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;line-height:1;background:#221C16;color:#C9BBA8;border:1px solid rgba(255,245,235,.18);box-shadow:0 2px 9px rgba(0,0,0,.32);transition:transform .15s ease,box-shadow .15s ease}#kula-mode-toggle:hover{transform:translateY(-1px)}#kula-mode-toggle svg{width:15px;height:15px;display:block;flex:0 0 auto}body.bright #kula-mode-toggle{background:#F4F6F8;color:#525C66;border-color:rgba(23,33,43,.15);box-shadow:0 2px 8px rgba(0,0,0,.10)}</style><button id="kula-mode-toggle" type="button" onclick="kulaToggle()" aria-label="Switch between light and dark mode"><span id="kmt-icon"></span><span id="kmt-label"></span></button><script>(function(){var MOON="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'/></svg>",SUN="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='4.2'/><path d='M12 1.6v2M12 20.4v2M3.6 12h-2M22.4 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4'/></svg>",K="kula-theme";function paint(){var d=!document.body.classList.contains("bright");var ic=document.getElementById("kmt-icon"),la=document.getElementById("kmt-label");if(ic)ic.innerHTML=d?SUN:MOON;if(la)la.textContent=d?"Light mode":"Dark mode"}window.kulaToggle=function(){document.body.classList.toggle("bright");try{localStorage.setItem(K,document.body.classList.contains("bright")?"light":"dark")}catch(e){}paint()};try{if(localStorage.getItem(K)==="light")document.body.classList.add("bright")}catch(e){}paint();})();</script>
+<script>/* kula: LMS embed events. "completed" fires once, when the learner reaches the closing screen. "advance" fires from the final button. */
+(function(){var sentCompleted=false;window.kulaEmbed=function(ev){if(ev==="completed"){if(sentCompleted)return;sentCompleted=true;}try{window.parent.postMessage({type:"lms-embed-event",version:"1.0",payload:{event:ev}},"*");}catch(e){}};})();</script>
+<style>#kula-mode-toggle{position:fixed;bottom:1.1rem;right:1.1rem;z-index:9999;display:inline-flex;align-items:center;gap:.45em;padding:.48rem .82rem;border-radius:999px;font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;line-height:1;background:#221C16;color:#C9BBA8;border:1px solid rgba(255,245,235,.18);box-shadow:0 2px 9px rgba(0,0,0,.32);transition:transform .15s ease,box-shadow .15s ease}#kula-mode-toggle:hover{transform:translateY(-1px)}#kula-mode-toggle svg{width:15px;height:15px;display:block;flex:0 0 auto}body.bright #kula-mode-toggle{background:#F4F6F8;color:#525C66;border-color:rgba(23,33,43,.15);box-shadow:0 2px 8px rgba(0,0,0,.10)}</style><button id="kula-mode-toggle" type="button" onclick="kulaToggle()" aria-label="Switch between light and dark mode"><span id="kmt-icon"></span><span id="kmt-label"></span></button><script>(function(){var MOON="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z'/></svg>",SUN="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='4.2'/><path d='M12 1.6v2M12 20.4v2M3.6 12h-2M22.4 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4'/></svg>",K="kula-mode";function paint(){var d=!document.body.classList.contains("bright");var ic=document.getElementById("kmt-icon"),la=document.getElementById("kmt-label");if(ic)ic.innerHTML=d?SUN:MOON;if(la)la.textContent=d?"Light mode":"Dark mode"}window.kulaToggle=function(){document.body.classList.toggle("bright");try{localStorage.setItem(K,document.body.classList.contains("bright")?"light":"dark")}catch(e){}paint()};try{if(localStorage.getItem(K)==="light")document.body.classList.add("bright")}catch(e){}paint();})();</script>
 <div class="container">
 
   <div id="start-screen">
@@ -196,7 +198,7 @@
       <div class="stage-tag"><span class="chip chip-recall">Next</span></div>
       <p>Look at the section breakdown above, not the total. Go back to the lesson covering your weakest section and run it again.</p><p>Then write the essay question out by hand in one hour, with nothing in front of you.</p>
     </div>
-    <div class="nav" style="justify-content:center;"><button class="btn-primary" id="kdone-btn">Finish &rarr;</button><button class="btn-secondary" id="redo-btn">&#8635; Choose again</button></div>
+    <div class="nav" style="justify-content:center;"><button class="btn-primary" id="kdone-btn">Finish this unit &rarr;</button><button class="btn-secondary" id="redo-btn">&#8635; Choose again</button></div>
     <div class="footer">The essay: Grade 12 History, Paper 1.</div>
   </div>
 </div>
@@ -214,7 +216,7 @@ const ITEMS = [
       "The Equal Franchise Act"
     ],
     "correct": 0,
-    "explanation": "The Voting Rights Act of 1965 removed the rigged literacy tests and other tricks that kept African Americans off the roll. {opt1}, the Civil Rights Act, is the earlier 1964 law, and it ended segregation in public places instead. You need both, because they fixed two different injustices, a year apart."
+    "explanation": "The Voting Rights Act of 1965 removed the rigged literacy tests and other tricks that kept African Americans off the roll. {opt1}, the Civil Rights Act, is the earlier 1964 law. It ended segregation in public places instead. You need both. They fixed two different wrongs, a year apart."
   },
   {
     "section": "The Law Changed, the Ghetto Did Not",
@@ -240,7 +242,7 @@ const ITEMS = [
       "Persuading more northern African Americans to join the national movement"
     ],
     "correct": 0,
-    "explanation": "The north needed action on jobs, housing and schools, because its barrier was economic, not written into law. {opt1} is the opposite of help, since a stricter segregation law would deepen the problem. This is why Black Power turned to community control rather than new statutes."
+    "explanation": "The north needed action on jobs, housing and schools. Its barrier was economic, not written into law. {opt1} is the opposite of help. A stricter segregation law would deepen the problem. This is why Black Power turned to community control rather than new laws."
   },
   {
     "section": "The Law Changed, the Ghetto Did Not",
@@ -253,7 +255,7 @@ const ITEMS = [
       "The Act removed poverty in the south but deliberately spared the north"
     ],
     "correct": 0,
-    "explanation": "The 1964 Act struck down legal segregation, and a law can't by itself remove poverty or unemployment. {opt1} chases the wrong fault, fussing over the date rather than the real limit. Remember what a law can and cannot do, and you will see the claim fall apart on its own."
+    "explanation": "The 1964 Act struck down legal segregation. A law cannot by itself remove poverty or unemployment. {opt1} chases the wrong fault, fussing over the date rather than the real limit. Remember what a law can and cannot do, and the claim falls apart on its own."
   },
   {
     "section": "Naming Yourself",
@@ -266,7 +268,7 @@ const ITEMS = [
       "Black Star"
     ],
     "correct": 0,
-    "explanation": "The two words were Black Power, and the crowd took up the chant. {opt1}, Black Panther, names the party founded later in California, not the slogan at Greenwood. Keeping the slogan and the party apart lets you tell the 1966 chant from the 1966 party without mixing them."
+    "explanation": "The two words were Black Power, and the crowd took up the chant. {opt1}, Black Panther, names the party founded later in California. It is not the slogan at Greenwood. Keep the slogan and the party apart and you can tell the 1966 chant from the 1966 party."
   },
   {
     "section": "Naming Yourself",
@@ -279,7 +281,7 @@ const ITEMS = [
       "Huey Newton"
     ],
     "correct": 0,
-    "explanation": "SNCC was chaired by Stokely Carmichael at the time of the slogan. {opt1}, Martin Luther King, led a separate and older group committed to non-violence. You can use the contrast: one struggle, two wings, and Carmichael led the younger and more impatient one."
+    "explanation": "SNCC was chaired by Stokely Carmichael at the time of the slogan. {opt1}, Martin Luther King, led a separate and older group committed to non-violence. Use the contrast. One struggle, two wings, and Carmichael led the younger and more impatient one."
   },
   {
     "section": "Naming Yourself",
@@ -292,7 +294,7 @@ const ITEMS = [
       "Because it separated the northern movement from the southern one"
     ],
     "correct": 0,
-    "explanation": "A group that cannot even name itself controls nothing else, so the name came first. {opt1} drifts off, since English words were not thought unable to describe identity. The logic runs on: take back the name, then the schools, the businesses and the rest."
+    "explanation": "A group that cannot even name itself controls nothing else. So the name came first. {opt1} drifts off. Nobody thought English words were unable to describe identity. The logic runs on: take back the name, then the schools, the businesses and the rest."
   },
   {
     "section": "Naming Yourself",
@@ -305,7 +307,7 @@ const ITEMS = [
       "One had famous leaders, the other refused to have any leaders at all"
     ],
     "correct": 0,
-    "explanation": "The two movements wanted opposite things: one sought entry into white institutions, the other control of its own. {opt2} exaggerates, splitting them into wholly peaceful and wholly violent, which is false. The real difference fits in one word each: entry against control."
+    "explanation": "The two movements wanted opposite things. One sought entry into white institutions. The other sought control of its own. {opt2} exaggerates, splitting them into wholly peaceful and wholly violent, which is false. The real difference fits in one word each. Entry against control."
   },
   {
     "section": "By Any Means Necessary",
@@ -318,7 +320,7 @@ const ITEMS = [
       "V"
     ],
     "correct": 0,
-    "explanation": "He replaced Little with X, standing for the family name that slavery had erased. The other letters carry no meaning here. You can link this straight to self-definition: the X is a name he chose for himself, not one he was given."
+    "explanation": "He replaced Little with X. It stands for the family name that slavery had erased. The other letters carry no meaning here. Link this straight to self-definition. The X is a name he chose, not one he was given."
   },
   {
     "section": "By Any Means Necessary",
@@ -331,7 +333,7 @@ const ITEMS = [
       "During his military service in the war"
     ],
     "correct": 0,
-    "explanation": "He met the Nation of Islam while serving a prison sentence, where he also educated himself. {opt1}, the pilgrimage to Mecca, came much later and pulled his thinking the other way. You can trace the arc for yourself: prison and the Nation first, Mecca and the widening near the end."
+    "explanation": "He met the Nation of Islam while serving a prison sentence, where he also educated himself. {opt1}, the pilgrimage to Mecca, came much later and pulled his thinking the other way. Trace the arc yourself. Prison and the Nation first, Mecca and the widening near the end."
   },
   {
     "section": "By Any Means Necessary",
@@ -344,7 +346,7 @@ const ITEMS = [
       "Because he wanted African Americans to attack the Klan first"
     ],
     "correct": 0,
-    "explanation": "A rule that binds only one side stops being a fair rule, and that was his whole point. {opt1} softens it wrongly, since he wasn't hoping to talk the Klan round. You can see the logic: self-defence simply removes the one-sided demand placed on the victim."
+    "explanation": "A rule that binds only one side stops being a fair rule. That was his whole point. {opt1} softens it wrongly. He was not hoping to talk the Klan round. Self-defence simply removes the one-sided demand placed on the victim."
   },
   {
     "section": "Guns and Breakfast",
@@ -383,7 +385,7 @@ const ITEMS = [
       "Because clashes with police drew the fastest national news coverage"
     ],
     "correct": 0,
-    "explanation": "Police abuse was the sharpest daily grievance, met on the street more often than any other. {opt3} treats the patrols as chasing coverage, which misses that lived grievance. You can see why they built around policing rather than jobs: it hurt people every single day."
+    "explanation": "Police abuse was the sharpest daily grievance, met on the street more often than any other. {opt3} treats the patrols as chasing coverage, which misses that. You can see why they built around policing rather than jobs. It hurt people every single day."
   },
   {
     "section": "Guns and Breakfast",
@@ -409,7 +411,7 @@ const ITEMS = [
       "An end to all institutions, black and white alike"
     ],
     "correct": 0,
-    "explanation": "Black Power wanted control of its own institutions in place of a seat at the shared table. {opt1}, a move to Africa, was never the aim of the movement here. With control as the goal, the schools, businesses and patrols all fit as parts of it."
+    "explanation": "Black Power wanted control of its own institutions, in place of a seat at the shared table. {opt1}, a move to Africa, was never the aim here. With control as the goal, the schools, businesses and patrols all fit as parts of it."
   },
   {
     "section": "What It Left Behind",
@@ -422,7 +424,7 @@ const ITEMS = [
       "Because it is a complete description, leaving out nothing at all"
     ],
     "correct": 0,
-    "explanation": "Militant describes the manner and skips the goal, which is why it is thin on its own. {opt3} claims it leaves nothing out, which is exactly the error to avoid. Add the missing purpose, self-definition and control, and the description is complete."
+    "explanation": "Militant describes the manner and skips the goal. That is why it is thin on its own. {opt3} claims it leaves nothing out, which is exactly the error to avoid. Add the missing purpose, self-definition and control, and the description is complete."
   },
   {
     "section": "What It Left Behind",
@@ -435,7 +437,7 @@ const ITEMS = [
       "Nothing is wrong, since the end of segregation was its only real result"
     ],
     "correct": 0,
-    "explanation": "Legal segregation ending was not the only lasting result: public office, Black studies and affirmative action lasted too. {opt3} accepts the narrow claim and throws away half the record. The fuller set of gains shows the movement changed far more than the statute books."
+    "explanation": "The movement also won public office, Black studies and affirmative action. {opt1} names only the legal win, which is the Civil Rights Movement's achievement, not this one. Give the long-term gains and the claim corrects itself."
   }
 ];
 
@@ -564,6 +566,7 @@ function render(){
 }
 
 function showResults(){
+  kulaEmbed("completed");
   quizScreen.classList.add("hidden");
   resultsScreen.classList.remove("hidden");
   let correct=0;
@@ -619,7 +622,6 @@ function showResults(){
 buildPicker();
 
 </script>
-<div class="kdone-back hidden" id="kdone-modal"><div class="kdone"><div class="kdone-label">Unit complete</div><p>Congratulations on completing The Black Power Movement. Come back here whenever you have a test or exam, or just need to consolidate your work.</p><button class="btn-primary" id="kdone-close">Done</button></div></div>
-<script>(function(){document.addEventListener("click",function(e){var m=document.getElementById("kdone-modal");if(!m||!e.target.closest)return;if(e.target.closest("#kdone-btn")){m.classList.remove("hidden");}else if(e.target.closest("#kdone-close")){m.classList.add("hidden");}});})();</script>
+<script>(function(){document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest("#kdone-btn")){kulaEmbed("advance");}});})();</script>
 </body>
 </html>
